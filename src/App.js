@@ -56,7 +56,7 @@ function App() {
             sx={{
               textAlign: "right",
               fontWeight: "bold",
-              fontSize: "34px",
+              fontSize: "29px",
               marginBottom: "8px",
             }}
           >
