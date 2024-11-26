@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import {
   Box,
@@ -1835,14 +1835,14 @@ export default function Form() {
       );
       data.append("product", document.getElementById("title")?.innerHTML);
       data.append("name", name);
-      data.append("phone", `'${phone}`);
+      data.append("phone", `${phone}`);
       data.append("wilaya", wilaya);
       data.append("adress", adress);
       data.append("quantity", quantity.toString());
       data.append("model", `${modelColr} / ${modelSize}`);
       data.append(
         "prix",
-        +quantity * +document.getElementById("price")?.innerHTML
+        document.getElementById("total")?.innerHTML.match(/\d+/)
       );
 
       await fetch(
@@ -2047,8 +2047,11 @@ export default function Form() {
               <Typography sx={{ fontWeight: "bold", fontSize: "22px" }}>
                 {"المجموع"}
               </Typography>
-              <Typography sx={{ fontWeight: "bold", fontSize: "22px" }}>
-                {+quantity * 4900} دج
+              <Typography
+                id="total"
+                sx={{ fontWeight: "bold", fontSize: "22px" }}
+              >
+                {quantity === 1 ? +quantity * 4300 + 600 : +quantity * 4300} دج
               </Typography>
             </Box>
           </Box>
@@ -2265,7 +2268,7 @@ export default function Form() {
                 <Typography
                   sx={{ fontWeight: "bold" }}
                   onClick={() => {
-                    if (quantity == 1) {
+                    if (quantity === 1) {
                       setQuantity(quantity);
                     } else {
                       setQuantity(quantity - 1);
